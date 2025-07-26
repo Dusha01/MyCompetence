@@ -17,11 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             e.preventDefault();
             
-            if (navMenu && navMenu.classList.contains('active')) {
+            if (navMenu?.classList.contains('active')) {
                 navMenu.classList.remove('active');
-                if (mobileMenuBtn) {
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
             
             const targetElement = document.querySelector(targetId);
@@ -34,7 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     behavior: 'smooth'
                 });
                 
-                history.pushState(null, null, targetId);
+                if (history.pushState) {
+                    history.pushState(null, null, targetId);
+                } else {
+                    window.location.hash = targetId;
+                }
             }
         });
     });
@@ -46,21 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
             '.university-text, .university-image, ' +
             '.competency-tile, ' +
             '.tech-layer, .tech-arrow, ' +
-            '.development-text, .development-image-container img'
+            '.development-text, .development-image-container'
         );
         
-        const observer = new IntersectionObserver((entries) => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
-                    // Отключаем наблюдение после анимации
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
         
         elementsToAnimate.forEach(element => {
             observer.observe(element);
@@ -72,32 +77,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const initParallax = function() {
         const parallaxElements = document.querySelectorAll('.hover-zoom');
         
-        if ('requestAnimationFrame' in window) {
-            const updateParallax = () => {
-                const scrollValue = window.scrollY;
-                
-                parallaxElements.forEach((element, index) => {
-                    const speed = 0.05 + (index * 0.02);
-                    element.style.transform = `translateY(${scrollValue * speed}px) scale(1.05)`;
-                });
-                
-                requestAnimationFrame(updateParallax);
-            };
+        if (!('requestAnimationFrame' in window)) return;
+        
+        let lastScrollPosition = window.scrollY;
+        let ticking = false;
+        
+        const updateParallax = () => {
+            const scrollValue = window.scrollY;
             
-            updateParallax();
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.05 + (index * 0.02);
+                const translateY = scrollValue * speed;
+                
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    element.style.transform = `translateY(${translateY}px)`;
+                }
+            });
+            
+            ticking = false;
+        };
+        
+        const onScroll = () => {
+            lastScrollPosition = window.scrollY;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        };
+        
+        window.addEventListener('scroll', onScroll, { passive: true });
+        
+        updateParallax();
+        
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            parallaxElements.forEach(el => el.style.transform = '');
+        };
+    };
+    
+    let cleanupParallax = null;
+    if (window.innerWidth > 768) {
+        cleanupParallax = initParallax();
+    }
+    
+    const handleResize = () => {
+        if (window.innerWidth <= 768 && cleanupParallax) {
+            cleanupParallax();
+            cleanupParallax = null;
+        } else if (window.innerWidth > 768 && !cleanupParallax) {
+            cleanupParallax = initParallax();
         }
     };
     
-    if (window.innerWidth > 768) {
-        initParallax();
-    }
+    window.addEventListener('resize', handleResize);
     
-    window.addEventListener('resize', function() {
-        const parallaxElements = document.querySelectorAll('.hover-zoom');
-        if (window.innerWidth <= 768) {
-            parallaxElements.forEach(element => {
-                element.style.transform = '';
-            });
-        }
+    window.addEventListener('beforeunload', () => {
+        if (cleanupParallax) cleanupParallax();
+        window.removeEventListener('resize', handleResize);
     });
 });

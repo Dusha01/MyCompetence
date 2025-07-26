@@ -393,27 +393,39 @@ section {
     align-items: center;
 }
 
-.development-image {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+.development-image-container img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+#frontend .development-image-container img {
+    border: 3px solid #61dafb; 
+}
+
+#backend .development-image-container img {
+    border: 3px solid #68a063; 
+}
+
+#fullstack .development-image-container img {
+    border: 3px solid #f0db4f; /
+}
+
+
+.development-image-container {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease 0.2s;
 }
 
-.development-image.animate {
+.development-image-container.animate {
     opacity: 1;
     transform: translateY(0);
 }
 
-.development-image:hover {
-    transform: scale(1.03) translateY(-5px) !important;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-}
-
-/* Уменьшенные изображения */
 .development-image-container img {
     max-width: 100%;
     max-height: 300px;
@@ -423,15 +435,15 @@ section {
 }
 
 #frontend .development-image {
-    border: 3px solid #61dafb; /* React blue */
+    border: 3px solid #61dafb; 
 }
 
 #backend .development-image {
-    border: 3px solid #68a063; /* Node green */
+    border: 3px solid #68a063; 
 }
 
 #fullstack .development-image {
-    border: 3px solid #f0db4f; /* JavaScript yellow */
+    border: 3px solid #f0db4f;
 }
 
 @media (max-width: 768px) {
@@ -496,7 +508,6 @@ nav {
     background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
 }
 
@@ -636,13 +647,6 @@ nav {
     50% { transform: translateY(-20px); }
 }
 
-.hover-zoom {
-    transition: transform 0.5s ease;
-}
-
-.hover-zoom:hover {
-    transform: scale(1.05);
-}
 
 .text-focus-in {
     animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
