@@ -6,6 +6,7 @@
     <title>Андрей Губченко - Fullstack разработчик</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,17 +14,37 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <img src="" alt="Андрей Губченко" class="avatar">
+                <img src="./static/photo_2025-07-26_11-14-48.jpg" alt="it`s me" class="avatar">
                 <h1>Андрей Губченко</h1>
                 <h2>Студент 2-го курса ДВГУПС | Fullstack разработчик</h2>
             </div>
         </div>
     </header>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Андрей <span>Губченко</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#about" class="nav-link">Обо мне</a></li>
+                <li class="nav-item"><a href="#unik" class="nav-link">Университет</a></li>
+                <li class="nav-item"><a href="#specialization" class="nav-link">Специализация</a></li>
+                <li class="nav-item"><a href="#frontend" class="nav-link">Frontend</a></li>
+                <li class="nav-item"><a href="#backend" class="nav-link">Backend</a></li>
+                <li class="nav-item"><a href="#fullstack" class="nav-link">Fullstack</a></li>
+                <li class="nav-item"><a href="#competencies" class="nav-link">Компетенции</a></li>
+                <li class="nav-item"><a href="#tech" class="nav-link">Технологии</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>Обо мне</h2>
+                <h2 class="text-focus-in">Обо мне</h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
@@ -32,7 +53,7 @@
                     <p>В свободное время я изучаю новые технологии, участвую в хакатонах и работаю над личными проектами, чтобы расширить свой профессиональный кругозор.</p>
                 </div>
                 <div class="about-image">
-                    <img src="" alt="Рабочее место">
+                    <img src="static/Main.jpg" alt="Рабочее место" class="hover-zoom">
                 </div>
             </div>
         </div>
@@ -41,16 +62,16 @@
     <section id="unik" class="bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>ДВГУПС</h2>
+                <h2 class="text-focus-in">ДВГУПС</h2>
             </div>
             <div class="university-info">
                 <div class="university-text">
                     <p>Дальневосточный государственный университет путей сообщения (ДВГУПС) - один из ведущих транспортных вузов России, расположенный в Хабаровске.</p>
                     <p>Университет готовит высококвалифицированных специалистов для транспортной отрасли и IT-сферы, сочетая фундаментальные знания с практической подготовкой.</p>
-                    <p>На кафедре "Программная инженерия" студенты получают современное образование в области разработки программного обеспечения, изучая как теоретические основы, так и практические технологии.</p>
+                    <p>На специальности "Программная инженерия" студенты получают современное образование в области разработки программного обеспечения, изучая как теоретические основы, так и практические технологии.</p>
                 </div>
                 <div class="university-image">
-                    <img src="" alt="ДВГУПС">
+                    <img src="./static/DVUGPS-foto.jpg" alt="ДВГУПС" class="hover-zoom">
                 </div>
             </div>
         </div>
@@ -59,21 +80,21 @@
     <section id="specialization">
         <div class="container">
             <div class="section-title">
-                <h2>Программный инженер</h2>
+                <h2 class="text-focus-in">Программный инженер</h2>
             </div>
             <div class="specialization-grid">
                 <div class="specialization-card">
-                    <img src="" alt="Инженерия">
+                    <img src="./static/icons/ProgrammEngineer.svg" alt="Инженерия">
                     <h3>Инженерные навыки</h3>
                     <p>Способность проектировать сложные системы, анализировать требования и создавать масштабируемые архитектуры программного обеспечения.</p>
                 </div>
                 <div class="specialization-card">
-                    <img src="" alt="Программирование">
+                    <img src="./static/icons/Programming.svg" alt="Программирование">
                     <h3>Программирование</h3>
                     <p>Владение несколькими языками программирования, понимание алгоритмов и структур данных, умение писать чистый и поддерживаемый код.</p>
                 </div>
                 <div class="specialization-card">
-                    <img src="" alt="Продукты">
+                    <img src="./static/icons/Ideyа.svg" alt="Продукты">
                     <h3>Создание продуктов</h3>
                     <p>Умение превращать идеи в работающие цифровые продукты, понимание полного цикла разработки от концепции до реализации.</p>
                 </div>
@@ -81,107 +102,195 @@
         </div>
     </section>
 
-    
-
-    <section id="web-development">
+    <section id="frontend" class="bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>Веб-разработка</h2>
+                <h2 class="text-focus-in">Frontend разработка</h2>
             </div>
-            <div class="web-dev-intro">
-                <p>Веб-разработка - это процесс создания веб-сайтов или веб-приложений, который включает в себя проектирование, верстку, программирование, настройку серверной части и развертывание проекта.</p>
+            <div class="development-content">
+                <div class="development-text">
+                    <p>Frontend разработка - это создание видимой части веб-приложений, с которой взаимодействуют пользователи. Это включает в себя верстку макетов, реализацию интерактивных элементов и обеспечение отзывчивости интерфейса.</p>
+                    <p>Современный frontend требует глубокого понимания HTML, CSS и JavaScript, а также популярных фреймворков и библиотек, таких как React, Angular или Vue.js.</p>
+                    <p>Важной частью frontend разработки является обеспечение кросс-браузерной совместимости и адаптивности под различные устройства.</p>
+                </div>
+                <div class="development-image-container">
+                    <img src="./static/frontend-small.jpg" alt="Frontend разработка" class="hover-zoom">
+                </div>
             </div>
-            <div class="specialization-grid">
-                <div class="specialization-card">
-                    <h3>Frontend разработка</h3>
-                    <p>Создание видимой части веб-приложений, с которой взаимодействуют пользователи. Включает работу с HTML, CSS и JavaScript, а также фреймворками типа React, Angular или Vue.js.</p>
+        </div>
+    </section>
+
+    <section id="backend">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-focus-in">Backend разработка</h2>
+            </div>
+            <div class="development-content reverse">
+                <div class="development-text">
+                    <p>Backend разработка - это создание серверной логики веб-приложений, которая обрабатывает запросы, работает с базами данных и выполняет бизнес-логику.</p>
+                    <p>Backend разработчики используют различные языки программирования, такие как JavaScript (Node.js), Python, PHP, Java и другие, а также фреймворки, такие как Express, Django, Laravel и Spring.</p>
+                    <p>Важной частью backend разработки является обеспечение безопасности, производительности и масштабируемости приложения.</p>
                 </div>
-                <div class="specialization-card">
-                    <h3>Backend разработка</h3>
-                    <p>Разработка серверной части приложения, которая обрабатывает запросы, работает с базами данных и выполняет бизнес-логику. Используются языки типа JavaScript (Node.js), Python, PHP, Java и др.</p>
+                <div class="development-image-container">
+                    <img src="./static/backend-small.jpg" alt="Backend разработка" class="hover-zoom">
                 </div>
-                <div class="specialization-card fullstack">
-                    <h3>Fullstack разработка</h3>
-                    <p>Комплексная разработка, объединяющая как frontend, так и backend части приложения. Fullstack разработчик способен создать полностью функционирующее веб-приложение от начала до конца.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="fullstack" class="bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-focus-in">Fullstack разработка</h2>
+            </div>
+            <div class="development-content">
+                <div class="development-text">
+                    <p>Fullstack разработка объединяет как frontend, так и backend части приложения. Fullstack разработчик способен создать полностью функционирующее веб-приложение от начала до конца.</p>
+                    <p>Такой подход позволяет лучше понимать весь цикл разработки, видеть проект целиком и эффективнее решать комплексные задачи.</p>
+                    <p>Fullstack разработчики особенно востребованы в стартапах и небольших командах, где требуется универсальность и способность работать на всех уровнях стека технологий.</p>
+                </div>
+                <div class="development-image-container">
+                    <img src="./static/fullstack-small.png" alt="Fullstack разработка" class="hover-zoom">
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="competencies" style="background-color: #f8f9fa;">
+    <section id="competencies">
         <div class="container">
             <div class="section-title">
-                <h2>Мои компетенции</h2>
+                <h2 class="text-focus-in">Мои компетенции</h2>
             </div>
-            <div class="competencies">
-                <div class="competency-card">
+            <div class="competencies-grid">
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
                     <h3>Веб-разработка</h3>
                     <p>Создание адаптивных и интерактивных веб-приложений с использованием современных технологий и фреймворков.</p>
                 </div>
-                <div class="competency-card">
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
                     <h3>Программная инженерия</h3>
-                    <p>Применение инженерных подходов к разработке программного обеспечения, включая проектирование архитектуры и тестирование.</p>
+                    <p>Применение инженерных подходов к разработке ПО, включая проектирование архитектуры и тестирование.</p>
                 </div>
-                <div class="competency-card">
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>Работа в команде</h3>
-                    <p>Опыт совместной работы над проектами, использование систем контроля версий (Git) и agile-методологий.</p>
+                    <p>Опыт совместной работы над проектами, использование Git и agile-методологий.</p>
+                </div>
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Адаптивный дизайн</h3>
+                    <p>Создание интерфейсов, которые корректно отображаются на любых устройствах.</p>
+                </div>
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Работа с данными</h3>
+                    <p>Проектирование и работа с базами данных, создание API для взаимодействия с данными.</p>
+                </div>
+                <div class="competency-tile">
+                    <div class="tile-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Решение проблем</h3>
+                    <p>Анализ, диагностика и решение сложных технических задач.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="tech">
+    <section id="tech" class="bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>Стек технологий</h2>
+                <h2 class="text-focus-in">Стек технологий</h2>
             </div>
-            <div class="tech-stack">
-                <div class="tech-item">HTML5</div>
-                <div class="tech-item">CSS3</div>
-                <div class="tech-item">JavaScript</div>
-                <div class="tech-item">TypeScript</div>
-                <div class="tech-item">React</div>
-                <div class="tech-item">Node.js</div>
-                <div class="tech-item">Express</div>
-                <div class="tech-item">MongoDB</div>
-                <div class="tech-item">PostgreSQL</div>
-                <div class="tech-item">Git</div>
-                <div class="tech-item">REST API</div>
-                <div class="tech-item">Docker</div>
+            <div class="tech-diagram">
+                <div class="tech-layer">
+                    <h3>Frontend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">HTML5</div>
+                        <div class="tech-item">CSS3</div>
+                        <div class="tech-item">JavaScript</div>
+                        <div class="tech-item">TypeScript</div>
+                        <div class="tech-item">Svelte</div>
+                    </div>
+                </div>
+                <div class="tech-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="tech-layer">
+                    <h3>Backend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Node.js</div>
+                        <div class="tech-item">Python</div>
+                    </div>
+                </div>
+                <div class="tech-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="tech-layer">
+                    <h3>Базы данных</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">MongoDB</div>
+                        <div class="tech-item">MySQL</div>
+                        <div class="tech-item">Reddis</div>
+                    </div>
+                </div>
+                <div class="tech-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="tech-layer">
+                    <h3>Инструменты</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Git</div>
+                        <div class="tech-item">Docker</div>
+                        <div class="tech-item">REST API</div>
+                        <div class="tech-item">Prometheus</div>
+                        <div class="tech-item">Grafana</div>
+                        <div class="tech-item">Telegram Bot API</div>
+                        <div class="tech-item">Open AI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-focus-in">Контакты</h2>
+            </div>
+            <div class="contact-content">
+                <p>Если вы хотите связаться со мной для сотрудничества или просто пообщаться, используйте следующие контакты:</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> Email: </p>
+                    <p><i class="fas fa-phone"></i>Telegram:  </p>
+                    <img src="./static/GH.png" alt="Git QR" class="GIT-QRImg">
+                </div>
             </div>
         </div>
     </section>
     
     <footer>
         <div class="container">
-            <p>© 2023 Андрей Губченко. Все права защищены.</p>
-            <p>Свяжитесь со мной для сотрудничества или обсуждения проектов</p>
+            <p>© 2025. Все права защищены.</p>
             <div class="social-links">
                 <a href="#" aria-label="VKontakte"><i class="fab fa-vk"></i></a>
                 <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            document.querySelectorAll('.competency-card, .about-text, .about-image, .specialization-card, .university-text, .university-image').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
