@@ -41,9 +41,9 @@
 
 
 <section id = "experience" class="py-20 px-4 md:px-8 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-    <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-6xl mx-auto">
         <h2 
-            class="text-3xl md:text-4xl font-bold mb-12 text-center"
+            class="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
             in:fly={{ y: 50, duration: 500 }}
             out:fade>
             Накопленный опыт за 1 год

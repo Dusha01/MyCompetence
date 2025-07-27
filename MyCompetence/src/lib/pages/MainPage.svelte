@@ -5,7 +5,8 @@
         About,
         Projects,
         Experience,
-        Steck
+        Steck,
+        Purposes
     } from '$lib'
 </script>
 
@@ -17,5 +18,6 @@
         <Projects/>
         <Experience/>
         <Steck/>
+        <Purposes/>
     </div>
 </div>

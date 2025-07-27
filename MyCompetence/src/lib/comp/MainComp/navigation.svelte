@@ -12,8 +12,8 @@
         { id: 'projects', text: 'Проекты'},
         { id: 'experience', text: 'Опыт'},
         { id: 'tech', text: 'Технологии' },
-        { id: 'goals', text: 'Цели' },
-        { id: 'forms', text: 'Связаться'},
+        { id: 'purposes', text: 'Цели' },
+        { id: 'forms', text: 'Услуги'},
         { id: 'contact', text: 'Контакты' }
     ];
 

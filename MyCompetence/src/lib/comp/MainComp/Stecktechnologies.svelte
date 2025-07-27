@@ -64,7 +64,7 @@
     };
 </script>
 
-<section id = "tech" class="py-20 px-4 md:px-8 bg-gray-900 text-white">
+<section id = "tech" class="py-20 px-4 md:px-8 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
     <div class="max-w-6xl mx-auto">
         <h2 
             class="text-3xl md:text-4xl font-bold mb-16 text-center"
