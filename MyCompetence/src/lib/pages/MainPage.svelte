@@ -4,7 +4,8 @@
         MainNavigation,
         About,
         Projects,
-        Experience
+        Experience,
+        Steck
     } from '$lib'
 </script>
 
@@ -15,5 +16,6 @@
         <About/>
         <Projects/>
         <Experience/>
+        <Steck/>
     </div>
 </div>
