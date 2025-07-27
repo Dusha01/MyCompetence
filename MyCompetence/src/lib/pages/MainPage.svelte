@@ -6,7 +6,9 @@
         Projects,
         Experience,
         Steck,
-        Purposes
+        Purposes,
+        Services,
+        Footer
     } from '$lib'
 </script>
 
@@ -19,5 +21,7 @@
         <Experience/>
         <Steck/>
         <Purposes/>
+        <Services/>
+        <Footer/>
     </div>
 </div>

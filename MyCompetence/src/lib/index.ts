@@ -1,4 +1,3 @@
-// main page
 export {default as MainHeader} from '$lib/comp/MainComp/header.svelte'
 export { default as MainNavigation} from '$lib/comp/MainComp/navigation.svelte'
 export { default as About} from '$lib/comp/MainComp/about.svelte'
@@ -6,3 +5,5 @@ export { default as Projects} from '$lib/comp/MainComp/projects.svelte'
 export { default as Experience} from '$lib/comp/MainComp/experience.svelte'
 export { default as Steck} from '$lib/comp/MainComp/Stecktechnologies.svelte'
 export { default as Purposes} from '$lib/comp/MainComp/purposes.svelte'
+export {default as Services} from '$lib/comp/MainComp/services.svelte'
+export { default as Footer} from '$lib/comp/MainComp/footer.svelte'

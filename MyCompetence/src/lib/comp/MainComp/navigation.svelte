@@ -12,9 +12,8 @@
         { id: 'projects', text: 'Проекты'},
         { id: 'experience', text: 'Опыт'},
         { id: 'tech', text: 'Технологии' },
-        { id: 'purposes', text: 'Цели' },
-        { id: 'forms', text: 'Услуги'},
-        { id: 'contact', text: 'Контакты' }
+        { id: 'career', text: 'Карьера' },
+        { id: 'services', text: 'Услуги'},
     ];
 
     const checkMobile = () => {
