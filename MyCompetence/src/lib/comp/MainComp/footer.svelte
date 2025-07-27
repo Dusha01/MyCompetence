@@ -5,7 +5,7 @@
         { name: 'GitHub', icon: 'github', url: '#' },
         { name: 'Telegram', icon: 'send', url: '#' },
         { name: 'LinkedIn', icon: 'linkedin', url: '#' },
-        { name: 'Email', icon: 'mail', url: 'mailto:example@example.com' }
+        { name: 'Email', icon: 'mail', url: 'Ia12Kotik@yandex.ru' }
     ];
     
     const navLinks = [

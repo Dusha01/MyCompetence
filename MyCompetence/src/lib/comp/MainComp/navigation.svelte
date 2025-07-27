@@ -74,37 +74,54 @@
 <div id="page-top" class="w-full h-0" />
 
 <nav 
-    class="w-full z-50 transition-all duration-300 bg-white shadow-lg"
+    class="w-full z-50 transition-all duration-300 bg-gray-900 border-b border-gray-700 shadow-xl"
     class:fixed={sticky}
     class:top-0={sticky}
     class:left-0={sticky}
     class:relative={!sticky}
     aria-label="Основная навигация">
-    <div class="container mx-auto px-4 flex justify-between items-center py-2">
+    <div class="container mx-auto px-4 flex justify-between items-center py-4">
         <a 
             href="#" 
-            class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent transition-all hover:scale-105"
+            class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent transition-all hover:scale-105"
             aria-label="Главная страница">
-            Anrew <span class="font-extrabold">Gubchenko</span>
+            Andrew <span class="font-extrabold">Gubchenko</span>
         </a>
 
         <button 
-            class="lg:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+            class="lg:hidden p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
             on:click={toggleMenu}
             aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu">
-            <i class={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-xl text-indigo-700`} aria-hidden="true"></i>
+            <svg class={`w-6 h-6 ${isMenuOpen ? 'text-purple-400' : 'text-gray-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {#if isMenuOpen}
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                {:else}
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                {/if}
+            </svg>
         </button>
 
         <div class="hidden lg:block">
-            <ul class="flex space-x-6">
+            <ul class="flex space-x-8">
                 {#each menuItems as item (item.id)}
-                    <li>
+                    <li class="relative">
                         <a 
                             href={`#${item.id}`}
-                            class="relative px-2 py-1 text-gray-700 hover:text-indigo-600 font-medium transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all hover:after:w-full">
-                            {item.text}
+                            class="block px-4 py-3 text-gray-300 hover:text-white font-medium transition-colors text-lg"
+                            on:mouseenter={e => {
+                                const underline = e.currentTarget.querySelector('.underline');
+                                if (underline) underline.classList.add('w-full');
+                            }}
+                            on:mouseleave={e => {
+                                const underline = e.currentTarget.querySelector('.underline');
+                                if (underline) underline.classList.remove('w-full');
+                            }}>
+                            <span class="relative z-10">
+                                {item.text}
+                            </span>
+                            <span class="absolute bottom-2 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-300 w-0 underline"></span>
                         </a>
                     </li>
                 {/each}
@@ -115,19 +132,20 @@
     {#if isMenuOpen && isMobile}
         <div 
             id="mobile-menu"
-            class="lg:hidden bg-white shadow-lg z-40 overflow-y-auto max-h-[calc(100vh-4rem)]"
+            class="lg:hidden bg-gray-800 shadow-xl z-40 overflow-y-auto max-h-[calc(100vh-5rem)]"
             transition:slide={{ duration: 200 }}
             role="menu">
-            <ul class="flex flex-col divide-y divide-gray-100">
+            <ul class="flex flex-col divide-y divide-gray-700">
                 {#each menuItems as item (item.id)}
-                    <li role="none">
+                    <li role="none" class="relative">
                         <a 
                             href={`#${item.id}`}
-                            class="block px-6 py-3 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition-colors"
+                            class="block px-8 py-4 text-gray-300 hover:text-white font-medium transition-colors text-lg
+                                   hover:bg-gradient-to-r hover:from-blue-900/20 hover:to-purple-900/20"
                             on:click={closeMenu}
-                            role="menuitem"
-                        >
-                            {item.text}
+                            role="menuitem">
+                            <span>{item.text}</span>
+                            <span class="absolute bottom-3 left-8 right-8 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 hover:opacity-100 transition-opacity"></span>
                         </a>
                     </li>
                 {/each}
@@ -137,7 +155,13 @@
 </nav>
 
 <style>
-    .after\:transition-all::after {
+    .underline {
+        transition-property: width;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
+    }
+    
+    .w-full {
+        width: 100%;
     }
 </style>

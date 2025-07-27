@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MyPHOTO from '../../assets/Myphotos/Main.jpg';
+    import MyPHOTO from '../../assets/Main.jpg';
     import { fade, fly } from 'svelte/transition';
     import { onMount } from 'svelte';
 
@@ -47,58 +47,39 @@
     }
 </script>
 
-<header class="bg-gradient-to-br from-indigo-900 to-purple-800 text-white py-12 shadow-xl">
+<header class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 shadow-2xl border-b border-gray-700">
     <div class="container mx-auto px-4">
-        <div class="flex flex-col items-center text-center space-y-6">
+        <div class="flex flex-col items-center text-center space-y-8">
             <img
                 src={MyPHOTO} 
                 alt="MainPhoto"
-                class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-xl"
+                class="w-44 h-44 rounded-full object-cover border-4 border-indigo-500/30 shadow-xl transition-all duration-500 hover:scale-105 hover:border-indigo-500/50 hover:shadow-indigo-500/20"
                 in:fly={{ y: -50, duration: 800, delay: 100 }}
                 out:fade/>
 
-            <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-amber-500"
+            <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 tracking-tight"
                 in:fade={{ delay: 300, duration: 800 }}
-                out:fade>Andrew Gubchenko
+                out:fade>
+                Andrew Gubchenko
             </h1>
 
-            <h2 class="text-xl md:text-2xl font-light max-w-2xl leading-relaxed"
+            <div class="text-xl md:text-2xl font-light max-w-2xl leading-relaxed space-y-4"
                 in:fly={{ x: 50, duration: 800, delay: 500 }}
                 out:fade>
                 
-                <span class="relative inline-block min-h-[2.5rem]">
-                    <span class="relative z-10">{displayText}</span>
-                    <span class="absolute bottom-0 left-0 w-full h-2 bg-amber-400 opacity-30 rounded-full animate-pulse"></span>
-                    <span class="inline-block w-1 h-6 bg-white align-middle ml-1 opacity-80 animate-blink"></span>
-                </span>
+                <div class="relative inline-block min-h-[2.5rem]">
+                    <span class="relative z-10 text-gray-300">{displayText}</span>
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 opacity-60 rounded-full animate-pulse"></span>
+                    <span class="inline-block w-1 h-6 bg-blue-400 align-middle ml-1 opacity-80 animate-blink"></span>
+                </div>
                 
-                <span class="mx-3">|</span>
+                <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent my-4"></div>
                 
-                <span class="relative inline-block">
-                    <span class="relative z-10">Fullstack разработчик</span>
-                    <span class="absolute bottom-0 left-0 w-full h-2 bg-blue-400 opacity-30 rounded-full animate-pulse"></span>
-                </span>
-            </h2>
+                <div class="relative inline-block">
+                    <span class="relative z-10 text-gray-300">Fullstack разработчик</span>
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 opacity-60 rounded-full animate-pulse"></span>
+                </div>
+            </div>
         </div>
     </div>
 </header>
-
-<style>
-    .animate-pulse {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    @keyframes pulse {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.1; }
-    }
-    
-    .animate-blink {
-        animation: blink 0.7s infinite;
-    }
-    
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-</style>

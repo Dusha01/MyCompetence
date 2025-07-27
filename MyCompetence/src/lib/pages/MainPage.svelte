@@ -8,7 +8,8 @@
         Steck,
         Purposes,
         Services,
-        Footer
+        Footer,
+        ScrollToTop
     } from '$lib'
 </script>
 
@@ -23,5 +24,6 @@
         <Purposes/>
         <Services/>
         <Footer/>
+        <ScrollToTop/>
     </div>
 </div>
