@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { text } from '@sveltejs/kit';
     import { onMount } from 'svelte';
     import { slide } from 'svelte/transition';
     
@@ -72,6 +71,7 @@
     }
 </script>
 
+<!-- svelte-ignore element_invalid_self_closing_tag -->
 <div id="page-top" class="w-full h-0" />
 
 <nav 

@@ -2,7 +2,9 @@
     import {
         MainHeader,
         MainNavigation,
-        About
+        About,
+        Projects,
+        Experience
     } from '$lib'
 </script>
 
@@ -11,5 +13,7 @@
         <MainHeader/>
         <MainNavigation/>
         <About/>
+        <Projects/>
+        <Experience/>
     </div>
 </div>
