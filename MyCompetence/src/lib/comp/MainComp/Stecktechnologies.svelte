@@ -16,7 +16,6 @@
         { id: 'python', name: 'Python', category: 'backend', level: 3 },
         { id: 'golang', name: 'Golang', category: 'backend', level: 2 },
         { id: 'cpp', name: 'C++', category: 'backend', level: 1 },
-        { id: 'js', name: 'JavaScript', category: 'backend', level: 2 },
         
         // Databases
         { id: 'mongo', name: 'MongoDB', category: 'db', level: 3 },
@@ -31,12 +30,13 @@
         // Web
         { id: 'html', name: 'HTML/CSS', category: 'web', level: 3 },
         { id: 'rest', name: 'REST API', category: 'web', level: 3 },
-        { id: 'telegram', name: 'Telegram API', category: 'web', level: 2 },
         { id: 'svelte', name: 'Svelte', category: 'web', level: 1},
+        { id: 'js', name: 'JavaScript', category: 'web', level: 1},
         
         // Other
         { id: 'figma', name: 'Figma', category: 'other', level: 2 },
-        { id: 'node-red', name: 'Node-RED', category: 'other', level: 1 }
+        { id: 'node-red', name: 'Node-RED', category: 'other', level: 1 },
+        { id: 'telegram', name: 'Telegram API', category: 'other', level: 3 }
     ];
 
     const categoryColors: Record<TechCategory, string> = {
