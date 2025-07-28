@@ -1,6 +1,5 @@
 <script lang="ts">
     import { fade, fly } from 'svelte/transition';
-    import { quintOut } from 'svelte/easing';
 
     type TechCategory = 'backend' | 'db' | 'devops' | 'web' | 'other';
 
@@ -64,17 +63,104 @@
     };
 </script>
 
-<section id = "tech" class="py-20 px-4 md:px-8 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+<section id="tech" class="py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
     <div class="max-w-6xl mx-auto">
         <h2 
-            class="text-3xl md:text-4xl font-bold mb-16 text-center"
+            class="text-2xl font-bold mb-8 text-center"
             in:fly={{ y: 50, duration: 500 }}
             out:fade>
             Мой стек технологий
         </h2>
 
-        <!-- Схема в виде блоков -->
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <!-- Мобильная версия (grid-cols-1) -->
+        <div class="grid grid-cols-1 gap-4 md:hidden">
+            <!-- Backend -->
+            <div class={`p-3 rounded-xl ${categoryColors.backend}`}>
+                <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.backend}</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    {#each techStack.filter(t => t.category === 'backend') as tech, i}
+                        <div 
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
+                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
+                        >
+                            {tech.name}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+
+            <!-- Web -->
+            <div class={`p-3 rounded-xl ${categoryColors.web}`}>
+                <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.web}</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    {#each techStack.filter(t => t.category === 'web') as tech, i}
+                        <div 
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
+                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
+                        >
+                            {tech.name}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+
+            <!-- Центральный блок -->
+            <div class="p-3 rounded-xl bg-gray-700 border-2 border-white">
+                <div class="text-center">
+                    <div class="text-xl font-bold mb-1">Fullstack</div>
+                    <div class="text-md">Developer</div>
+                </div>
+            </div>
+
+            <!-- Databases -->
+            <div class={`p-3 rounded-xl ${categoryColors.db}`}>
+                <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.db}</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    {#each techStack.filter(t => t.category === 'db') as tech, i}
+                        <div 
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
+                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
+                        >
+                            {tech.name}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+
+            <!-- DevOps -->
+            <div class={`p-3 rounded-xl ${categoryColors.devops}`}>
+                <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.devops}</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    {#each techStack.filter(t => t.category === 'devops') as tech, i}
+                        <div 
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
+                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
+                        >
+                            {tech.name}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+
+            <!-- Other -->
+            <div class={`p-3 rounded-xl ${categoryColors.other}`}>
+                <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.other}</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    {#each techStack.filter(t => t.category === 'other') as tech, i}
+                        <div 
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
+                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
+                        >
+                            {tech.name}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+        </div>
+
+        <!-- Десктоп версия (скрыта на мобильных) -->
+        <div class="hidden md:grid md:grid-cols-5 gap-6">
+            <!-- Оригинальная разметка для десктопа -->
             <!-- Backend -->
             <div 
                 class={`p-4 rounded-xl ${categoryColors.backend} col-span-1 md:col-span-2`}
@@ -170,11 +256,11 @@
         </div>
 
         <!-- Легенда -->
-        <div class="mt-16 flex flex-wrap justify-center gap-4" in:fade={{ delay: 800 }}>
+        <div class="mt-8 md:mt-16 flex flex-wrap justify-center gap-3 md:gap-4" in:fade={{ delay: 800 }}>
             {#each Object.entries(categoryNames) as [category, name]}
                 <div class="flex items-center">
-                    <div class={`w-4 h-4 rounded-full mr-2 ${categoryColors[category as TechCategory].split(' ')[0]}`}></div>
-                    <span class="text-gray-300 text-sm">{name}</span>
+                    <div class={`w-3 h-3 md:w-4 md:h-4 rounded-full mr-1 md:mr-2 ${categoryColors[category as TechCategory].split(' ')[0]}`}></div>
+                    <span class="text-gray-300 text-xs md:text-sm">{name}</span>
                 </div>
             {/each}
         </div>

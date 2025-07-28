@@ -76,20 +76,75 @@
 
 <section
     id="career"
-    class="py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-800 text-white relative overflow-hidden"
+    class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-800 text-white relative overflow-hidden"
     in:fade={{ duration: 300 }}>
 
     <div class="max-w-7xl mx-auto relative z-10">
-        <div class="text-center mb-20" in:fly={{ y: 50, duration: 500 }}>
-            <h2 class="text-4xl md:text-5xl font-bold pb-3 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+        <div class="text-center mb-12" in:fly={{ y: 50, duration: 500 }}>
+            <h2 class="text-3xl md:text-4xl font-bold pb-3 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
                 Карьерный путь Backend-разработчика
             </h2>
-            <p class="text-xl pb-5 text-gray-300 max-w-3xl mx-auto">
+            <p class="text-lg pb-5 text-gray-300 max-w-3xl mx-auto">
                 От джуниора до технического лидера: системный подход к профессиональному росту
             </p>
         </div>
 
-        <div class="relative h-[700px] md:h-[800px] mt-10">
+        <!-- Мобильная версия (вертикальная с линией) -->
+        <div class="lg:hidden relative">
+            <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-600 transform -translate-x-1/2 -z-0"></div>
+            
+            <div class="relative flex flex-col items-center justify-center">
+                {#each careerPath as step (step.id)}
+                    <div class="w-full flex justify-center py-4">
+                        <div
+                            class="relative w-full max-w-xs sm:max-w-sm transition-all duration-500"
+                            in:fly={{ y: 100, duration: 500, delay: step.id * 100 }}>
+
+                            <div
+                                class={`relative p-5 rounded-xl bg-gray-800 border ${step.highlight ? 'border-blue-400 shadow-lg shadow-blue-500/30' : 'border-gray-700'} transition-all duration-300 hover:scale-[1.02] ${step.highlight ? 'hover:shadow-blue-500/30' : 'hover:shadow-purple-500/20'}`}
+                                in:scale={{ duration: 500, delay: step.id * 100 + 300 }}>
+
+                                {#if step.highlight}
+                                    <div class="absolute -top-3 -right-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                                        Target Position
+                                    </div>
+                                {/if}
+
+                                <div class="flex items-start mb-3">
+                                    <div class={`text-3xl mr-4 ${step.highlight ? 'text-blue-400' : 'text-purple-400'}`}>
+                                        {step.icon}
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white mb-1">
+                                            {step.title}
+                                        </h3>
+                                        <p class="text-gray-400 text-sm">
+                                            {step.description} • {step.duration}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="border-t border-gray-700 pt-3">
+                                    <h4 class="text-xs font-semibold text-blue-400 mb-2 uppercase tracking-wider">Ключевые навыки:</h4>
+                                    <ul class="text-xs text-gray-400 space-y-1.5">
+                                        {#each step.skills as skill}
+                                            <li class="flex items-start">
+                                                <svg class="w-3 h-3 mt-0.5 mr-2 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                {skill}
+                                            </li>
+                                        {/each}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {/each}
+            </div>
+        </div>
+
+        <!-- Десктопная версия (горизонтальная) -->
+        <div class="hidden lg:block relative h-[700px] md:h-[800px] mt-10">
             <div class="absolute left-1/2 top-10 bottom-32 w-1 bg-gradient-to-b from-blue-500 to-purple-600 transform -translate-x-1/2" style="z-index: 1;"></div>
 
             {#each careerPath as step (step.id)}
@@ -143,21 +198,21 @@
             {/each}
         </div>
 
-        <div class="mt-32 grid md:grid-cols-3 gap-8" in:fly={{ y: 50, duration: 500, delay: 800 }}>
-            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
+        <div class="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8" in:fly={{ y: 50, duration: 500, delay: 800 }}>
+            <div class="bg-gray-800/50 p-5 sm:p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
                 <div class="text-blue-400 text-2xl mb-3">📚</div>
-                <h3 class="text-xl font-bold mb-2">Глубокие знания</h3>
-                <p class="text-gray-300">Освоение computer science fundamentals: алгоритмы, структуры данных, паттерны проектирования, системы хранения данных</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Глубокие знания</h3>
+                <p class="text-sm sm:text-base text-gray-300">Освоение computer science fundamentals: алгоритмы, структуры данных, паттерны проектирования, системы хранения данных</p>
             </div>
-            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
+            <div class="bg-gray-800/50 p-5 sm:p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
                 <div class="text-blue-400 text-2xl mb-3">🛠️</div>
-                <h3 class="text-xl font-bold mb-2">Практический опыт</h3>
-                <p class="text-gray-300">Участие в сложных проектах с полным циклом разработки от проектирования до production-развертывания</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Практический опыт</h3>
+                <p class="text-sm sm:text-base text-gray-300">Участие в сложных проектах с полным циклом разработки от проектирования до production-развертывания</p>
             </div>
-            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
+            <div class="bg-gray-800/50 p-5 sm:p-6 rounded-xl border border-gray-700 hover:border-blue-400 transition-colors">
                 <div class="text-blue-400 text-2xl mb-3">🧩</div>
-                <h3 class="text-xl font-bold mb-2">Системное мышление</h3>
-                <p class="text-gray-300">Умение проектировать масштабируемые и отказоустойчивые системы с учетом бизнес-требований</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2">Системное мышление</h3>
+                <p class="text-sm sm:text-base text-gray-300">Умение проектировать масштабируемые и отказоустойчивые системы с учетом бизнес-требований</p>
             </div>
         </div>
     </div>

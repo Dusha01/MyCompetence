@@ -17,7 +17,7 @@
             description: "Консольное приложение для сбора новостей из различных источников с фильтрацией по категориям и ключевым словам.",
             icon: "📰",
             tags: ["Python", "BeautifulSoup", "API"],
-            link: ""
+            link: "https://github.com/Dusha01/News-Aggregator"
         },
         {
             id: 3,
@@ -25,7 +25,7 @@
             description: "Мониторинг серверных метрик через Prometheus. Автоматические алерты и визуализация данных в виде графиков прямо в Telegram.",
             icon: "📊",
             tags: ["Python", "Prometheus", "Grafana", "Telegram API"],
-            link: ""
+            link: "https://github.com/Dusha01/Alert_TG_BOT"
         },
         {
             id: 4,
@@ -33,7 +33,7 @@
             description: "Продвинутый парсер веб-страниц с использованием AI для анализа и структурирования контента. Поддержка различных форматов вывода.",
             icon: "🤖",
             tags: ["Python", "LLM", "BeautifulSoup", "NLP"],
-            link: ""
+            link: "https://github.com/Dusha01/ai_pars_sites"
         }
     ];
   
@@ -97,7 +97,7 @@
         </div>
   
         <div class="text-center mt-16" in:fly={{ y: 50, duration: 500, delay: 300 }}>
-            <a href="#" class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1">
+            <a href="https://github.com/Dusha01" class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1">
                 Посмотреть все проекты
             </a>
         </div>
