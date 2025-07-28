@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import { fade, fly } from 'svelte/transition';
 
     type TechCategory = 'backend' | 'db' | 'devops' | 'web' | 'other';
@@ -61,28 +62,66 @@
             default: return 'border border-white shadow-sm';
         }
     };
+
+    let isVisible = false;
+    let sectionRef: HTMLElement;
+
+    onMount(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    isVisible = entry.isIntersecting;
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef) {
+            observer.observe(sectionRef);
+        }
+        
+        return () => {
+            if (sectionRef) {
+                observer.unobserve(sectionRef);
+            }
+        };
+    });
 </script>
 
-<section id="tech" class="py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+<section 
+    id="tech" 
+    class="py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white"
+    bind:this={sectionRef}
+>
     <div class="max-w-6xl mx-auto">
         <h2 
-            class="text-2xl font-bold mb-8 text-center"
-            in:fly={{ y: 50, duration: 500 }}
-            out:fade>
+            class="text-2xl font-bold mb-8 text-center transition-all duration-1000 ease-out"
+            class:opacity-0={!isVisible}
+            class:translate-y-[-20px]={!isVisible}
+            class:opacity-100={isVisible}
+            class:translate-y-0={isVisible}>
             Мой стек технологий
         </h2>
 
         <!-- Мобильная версия (grid-cols-1) -->
         <div class="grid grid-cols-1 gap-4 md:hidden">
             <!-- Backend -->
-            <div class={`p-3 rounded-xl ${categoryColors.backend}`}>
+            <div 
+                class={`p-3 rounded-xl ${categoryColors.backend} transition-all duration-1000 ease-out delay-150`}
+                class:opacity-0={!isVisible}
+                class:translate-y-4={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.backend}</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {#each techStack.filter(t => t.category === 'backend') as tech, i}
                         <div 
-                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-2={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${150 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -90,14 +129,22 @@
             </div>
 
             <!-- Web -->
-            <div class={`p-3 rounded-xl ${categoryColors.web}`}>
+            <div 
+                class={`p-3 rounded-xl ${categoryColors.web} transition-all duration-1000 ease-out delay-300`}
+                class:opacity-0={!isVisible}
+                class:translate-y-4={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.web}</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {#each techStack.filter(t => t.category === 'web') as tech, i}
                         <div 
-                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-2={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${300 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -105,7 +152,12 @@
             </div>
 
             <!-- Центральный блок -->
-            <div class="p-3 rounded-xl bg-gray-700 border-2 border-white">
+            <div 
+                class="p-3 rounded-xl bg-gray-700 border-2 border-white transition-all duration-1000 ease-out delay-450"
+                class:opacity-0={!isVisible}
+                class:scale-90={!isVisible}
+                class:opacity-100={isVisible}
+                class:scale-100={isVisible}>
                 <div class="text-center">
                     <div class="text-xl font-bold mb-1">Fullstack</div>
                     <div class="text-md">Developer</div>
@@ -113,14 +165,22 @@
             </div>
 
             <!-- Databases -->
-            <div class={`p-3 rounded-xl ${categoryColors.db}`}>
+            <div 
+                class={`p-3 rounded-xl ${categoryColors.db} transition-all duration-1000 ease-out delay-600`}
+                class:opacity-0={!isVisible}
+                class:translate-y-4={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.db}</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {#each techStack.filter(t => t.category === 'db') as tech, i}
                         <div 
-                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-2={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${600 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -128,14 +188,22 @@
             </div>
 
             <!-- DevOps -->
-            <div class={`p-3 rounded-xl ${categoryColors.devops}`}>
+            <div 
+                class={`p-3 rounded-xl ${categoryColors.devops} transition-all duration-1000 ease-out delay-750`}
+                class:opacity-0={!isVisible}
+                class:translate-y-4={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.devops}</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {#each techStack.filter(t => t.category === 'devops') as tech, i}
                         <div 
-                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-2={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${750 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -143,14 +211,22 @@
             </div>
 
             <!-- Other -->
-            <div class={`p-3 rounded-xl ${categoryColors.other}`}>
+            <div 
+                class={`p-3 rounded-xl ${categoryColors.other} transition-all duration-1000 ease-out delay-900`}
+                class:opacity-0={!isVisible}
+                class:translate-y-4={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-lg font-bold mb-3 text-center">{categoryNames.other}</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {#each techStack.filter(t => t.category === 'other') as tech, i}
                         <div 
-                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-2 rounded-lg text-center text-sm ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-2={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${900 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -160,18 +236,23 @@
 
         <!-- Десктоп версия (скрыта на мобильных) -->
         <div class="hidden md:grid md:grid-cols-5 gap-6">
-            <!-- Оригинальная разметка для десктопа -->
             <!-- Backend -->
             <div 
-                class={`p-4 rounded-xl ${categoryColors.backend} col-span-1 md:col-span-2`}
-                in:fly={{ x: -50, duration: 400 }}>
+                class={`p-4 rounded-xl ${categoryColors.backend} col-span-1 md:col-span-2 transition-all duration-1000 ease-out`}
+                class:opacity-0={!isVisible}
+                class:translate-x-[-50px]={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-x-0={isVisible}>
                 <h3 class="text-xl font-bold mb-4 text-center">{categoryNames.backend}</h3>
                 <div class="grid grid-cols-2 gap-3">
                     {#each techStack.filter(t => t.category === 'backend') as tech, i}
                         <div 
-                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-4={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${150 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -180,15 +261,21 @@
 
             <!-- Web -->
             <div 
-                class={`p-4 rounded-xl ${categoryColors.web} col-span-1 md:col-span-3`}
-                in:fly={{ x: 50, duration: 400, delay: 100 }}>
+                class={`p-4 rounded-xl ${categoryColors.web} col-span-1 md:col-span-3 transition-all duration-1000 ease-out delay-150`}
+                class:opacity-0={!isVisible}
+                class:translate-x-[50px]={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-x-0={isVisible}>
                 <h3 class="text-xl font-bold mb-4 text-center">{categoryNames.web}</h3>
                 <div class="grid grid-cols-3 gap-3">
                     {#each techStack.filter(t => t.category === 'web') as tech, i}
                         <div 
-                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-4={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${300 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -197,14 +284,21 @@
 
             <!-- Databases -->
             <div 
-                class={`p-4 rounded-xl ${categoryColors.db} col-start-2`}
-                in:fly={{ x: -50, duration: 400, delay: 200 }}>
+                class={`p-4 rounded-xl ${categoryColors.db} col-start-2 transition-all duration-1000 ease-out delay-300`}
+                class:opacity-0={!isVisible}
+                class:translate-x-[-50px]={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-x-0={isVisible}>
                 <h3 class="text-xl font-bold mb-4 text-center">{categoryNames.db}</h3>
                 <div class="grid grid-cols-1 gap-3">
                     {#each techStack.filter(t => t.category === 'db') as tech, i}
                         <div 
-                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}>
+                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-4={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${450 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -213,8 +307,11 @@
 
             <!-- Центральный блок -->
             <div 
-                class="p-4 rounded-xl bg-gray-700 border-2 border-white col-span-1 flex items-center justify-center"
-                in:fade={{ duration: 500, delay: 300 }}>
+                class="p-4 rounded-xl bg-gray-700 border-2 border-white col-span-1 flex items-center justify-center transition-all duration-1000 ease-out delay-450"
+                class:opacity-0={!isVisible}
+                class:scale-90={!isVisible}
+                class:opacity-100={isVisible}
+                class:scale-100={isVisible}>
                 <div class="text-center">
                     <div class="text-2xl font-bold mb-2">Fullstack</div>
                     <div class="text-lg">Developer</div>
@@ -223,15 +320,21 @@
 
             <!-- DevOps -->
             <div 
-                class={`p-4 rounded-xl ${categoryColors.devops} col-span-1`}
-                in:fly={{ x: 50, duration: 400, delay: 200 }}>
+                class={`p-4 rounded-xl ${categoryColors.devops} col-span-1 transition-all duration-1000 ease-out delay-600`}
+                class:opacity-0={!isVisible}
+                class:translate-x-[50px]={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-x-0={isVisible}>
                 <h3 class="text-xl font-bold mb-4 text-center">{categoryNames.devops}</h3>
                 <div class="grid grid-cols-1 gap-3">
                     {#each techStack.filter(t => t.category === 'devops') as tech, i}
                         <div 
-                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}
-                        >
+                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-4={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${600 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -240,14 +343,21 @@
 
             <!-- Other -->
             <div 
-                class={`p-4 rounded-xl ${categoryColors.other} col-span-1 md:col-span-5`}
-                in:fly={{ y: 50, duration: 400, delay: 400 }}>
+                class={`p-4 rounded-xl ${categoryColors.other} col-span-1 md:col-span-5 transition-all duration-1000 ease-out delay-750`}
+                class:opacity-0={!isVisible}
+                class:translate-y-[50px]={!isVisible}
+                class:opacity-100={isVisible}
+                class:translate-y-0={isVisible}>
                 <h3 class="text-xl font-bold mb-4 text-center">{categoryNames.other}</h3>
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-3">
                     {#each techStack.filter(t => t.category === 'other') as tech, i}
                         <div 
-                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)}`}
-                            in:fly={{ y: 20, duration: 300, delay: 100 * i }}>
+                            class={`p-3 rounded-lg text-center ${getLevelColor(tech.level)} transition-all duration-300 ease-out`}
+                            class:opacity-0={!isVisible}
+                            class:translate-y-4={!isVisible}
+                            class:opacity-100={isVisible}
+                            class:translate-y-0={isVisible}
+                            style={`transition-delay: ${750 + i * 50}ms`}>
                             {tech.name}
                         </div>
                     {/each}
@@ -256,7 +366,13 @@
         </div>
 
         <!-- Легенда -->
-        <div class="mt-8 md:mt-16 flex flex-wrap justify-center gap-3 md:gap-4" in:fade={{ delay: 800 }}>
+        <div 
+            class="mt-8 md:mt-16 flex flex-wrap justify-center gap-3 md:gap-4 transition-all duration-1000 ease-out"
+            class:opacity-0={!isVisible}
+            class:translate-y-[20px]={!isVisible}
+            class:opacity-100={isVisible}
+            class:translate-y-0={isVisible}
+            style="transition-delay: 900ms">
             {#each Object.entries(categoryNames) as [category, name]}
                 <div class="flex items-center">
                     <div class={`w-3 h-3 md:w-4 md:h-4 rounded-full mr-1 md:mr-2 ${categoryColors[category as TechCategory].split(' ')[0]}`}></div>
@@ -266,3 +382,10 @@
         </div>
     </div>
 </section>
+
+<style>
+    [class*="transition-all"] {
+        transition-property: all;
+        will-change: transform, opacity;
+    }
+</style>

@@ -2,8 +2,8 @@
     import { fade } from 'svelte/transition';
     
     const socialLinks = [
-        { name: 'GitHub', icon: 'github', url: '#' },
-        { name: 'Telegram', icon: 'send', url: '#' },
+        { name: 'GitHub', icon: 'github', url: 'https://github.com/Dusha01' },
+        { name: 'Telegram', icon: 'send', url: 'https://t.me/Haunted_sss' },
         { name: 'LinkedIn', icon: 'linkedin', url: '#' },
         { name: 'Email', icon: 'mail', url: 'Ia12Kotik@yandex.ru' }
     ];
@@ -104,7 +104,7 @@
         </div>
 
         <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>© {new Date().getFullYear()} Ваше Имя. Все права защищены.</p>
+            <p>© {new Date().getFullYear()} Andrew. Все права защищены.</p>
         </div>
     </div>
 </footer>

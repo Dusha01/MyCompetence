@@ -84,7 +84,7 @@
             <h2 class="text-3xl md:text-4xl font-bold pb-3 mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
                 Карьерный путь Backend-разработчика
             </h2>
-            <p class="text-lg pb-5 text-gray-300 max-w-3xl mx-auto">
+            <p class="text-lg pb-20 text-gray-300 max-w-3xl mx-auto">
                 От джуниора до технического лидера: системный подход к профессиональному росту
             </p>
         </div>
