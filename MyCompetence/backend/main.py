@@ -1,32 +1,15 @@
-import os
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
-from dotenv import load_dotenv
-from aiogram import Bot
-import logging
+from fastapi.staticfiles import StaticFiles
 
-load_dotenv()
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-token = os.getenv('TOKEN')
-chatID = os.getenv('CHAT_ID')
-
-if not token or not chatID: 
-    raise ValueError('Error token or chatID')
-
-bot = Bot(token=token)
-
-class ContactForm(BaseModel):
-    name: str
-    phone: str
-    email: str
-    subject: str
-    message: str
+from core.database import init_db
+from modules.tg_bot.router import router as tg_bot_router
+from modules.admin.router import router as admin_router
+from core.container import setup_dependency_injection
 
 app = FastAPI()
+container = setup_dependency_injection()
+container.wire(modules=["modules.admin.router", "modules.tg_bot.router", "modules.admin.dependencies"])
 
 app.add_middleware(
     CORSMiddleware,
@@ -36,31 +19,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(tg_bot_router, prefix="/api")
+app.include_router(admin_router, prefix="/admin")
 
-@app.post("/api/contact")
-async def submit_contact_form(form_data: ContactForm):
-    try:
-        message = (
-            "📬 *Новое сообщение с сайта*\n\n"
-            f"👤 *Имя:* {form_data.name}\n"
-            f"📞 *Телефон:* {form_data.phone}\n"
-            f"📧 *Email:* {form_data.email}\n"
-            f"📌 *Тема:* {form_data.subject}\n\n"
-            f"📝 *Сообщение:*\n{form_data.message}"
-        )
+#app.mount("/admin", StaticFiles(directory="static/admin", html=True), name="admin")
 
-        await bot.send_message(
-            chat_id=chatID,
-            text=message,
-            parse_mode="Markdown"
-        )
-
-        logger.info('message send')
-        return {"status": "success", "message": "Форма успешно отправлена"}
-    except Exception as e:
-        logger.error(f"Ошибка при отправке формы: {str(e)}")
-        raise HTTPException(status_code=500, detail="Ошибка при обработке формы")
-
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 @app.get("/health")
 async def health_check():
