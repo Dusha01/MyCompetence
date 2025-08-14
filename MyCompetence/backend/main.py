@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 
 from core.database import init_db
 from modules.tg_bot.router import router as tg_bot_router
@@ -22,7 +21,6 @@ app.add_middleware(
 app.include_router(tg_bot_router, prefix="/api")
 app.include_router(admin_router, prefix="/admin")
 
-#app.mount("/admin", StaticFiles(directory="static/admin", html=True), name="admin")
 
 @app.on_event("startup")
 async def startup_event():

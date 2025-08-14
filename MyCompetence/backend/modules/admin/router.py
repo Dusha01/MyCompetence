@@ -23,3 +23,7 @@ async def login_for_access_token(
 @router.get("/me", response_model=UserDTO)
 async def read_users_me(current_user: UserDTO = Depends(get_current_active_user)):
     return current_user
+
+@router.get("/site-data", response_model=dict)
+async def get_site_data(current_user: UserDTO = Depends(get_current_active_user)):
+    return "1"

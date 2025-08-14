@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+
     let username: string = "";
     let password: string = "";
     let error: string | null = null;
@@ -29,7 +31,7 @@
 
             const { access_token } = await response.json();
             localStorage.setItem('admin_token', access_token);
-            window.location.href = '/admin/dashboard';
+            await goto('/admin/dashboard');
         } catch (err) {
             error = err instanceof Error ? err.message : 'Authentication failed';
         } finally {
