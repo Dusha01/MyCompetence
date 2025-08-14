@@ -1,5 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { authStore } from "./auth";
+    import { browser } from "$app/environment";
 
     let username: string = "";
     let password: string = "";
@@ -7,37 +9,54 @@
     let isLoading: boolean = false;
 
     const handleSubmit = async (e: Event) => {
-        e.preventDefault();
-        isLoading = true;
-        error = null;
+    e.preventDefault();
+    isLoading = true;
+    error = null;
 
-        try {
-            const response = await fetch('http://localhost:8000/admin/token',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    username,
-                    password,
-                    grant_type: 'password'
-                })
-            });
+    try {
+        const response = await fetch('http://localhost:8000/admin/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                username,
+                password,
+                grant_type: 'password'
+            })
+        });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.detail || 'Authentication failed');
-            }
-
-            const { access_token } = await response.json();
-            localStorage.setItem('admin_token', access_token);
-            await goto('/admin/dashboard');
-        } catch (err) {
-            error = err instanceof Error ? err.message : 'Authentication failed';
-        } finally {
-            isLoading = false;
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Authentication failed');
         }
+
+        const { access_token } = await response.json();
+        
+        if (browser) {
+            sessionStorage.setItem('admin_token', access_token);
+            authStore.update(state => ({
+                ...state,
+                token: access_token,
+                isAuthenticated: true,
+                error: null
+            }));
+        }
+        
+        await goto('/admin/dashboard');
+    } catch (err) {
+        error = err instanceof Error ? err.message : 'Authentication failed';
+        if (browser) {
+            authStore.update(state => ({
+                ...state,
+                error: error,
+                isAuthenticated: false
+            }));
+        }
+    } finally {
+        isLoading = false;
     }
+}
 </script>
 
 <form

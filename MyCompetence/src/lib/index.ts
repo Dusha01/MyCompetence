@@ -11,10 +11,3 @@ export { default as ScrollToTop} from '$lib/comp/MainComp/ScrollToTop.svelte'
 
 export {default as BgAuth} from '$lib/comp/AuthComp/bg.svelte'
 export {default as SignInForm} from '$lib/comp/AuthComp/signInForm.svelte'
-
-export {default as AdminHeader} from '$lib/comp/AdminComp/AdminHeader.svelte'
-export {default as AdminSidebar} from '$lib/comp/AdminComp/AdminSidebar.svelte'
-export {default as ContentEditor} from '$lib/comp/AdminComp/ContentEditor.svelte'
-export {default as ComponentsManager} from '$lib/comp/AdminComp/ComponentsManager.svelte'
-export {default as StyleEditor} from '$lib/comp/AdminComp/ContentEditor.svelte'
-export {default as SettingsEditor} from '$lib/comp/AdminComp/SettingsEditor.svelte'
