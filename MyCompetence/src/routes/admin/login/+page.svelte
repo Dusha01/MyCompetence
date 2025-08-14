@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AdminPage from '$lib/pages/AdminPage.svelte'
+    import AuthPage from '$lib/pages/AuthPage.svelte'
 </script>
 
-<AdminPage />
+<AuthPage />
