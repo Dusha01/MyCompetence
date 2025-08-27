@@ -1,31 +1,47 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import logging
+import uvicorn
 
-from core.database import init_db
-from modules.tg_bot.router import router as tg_bot_router
-from modules.admin.router import router as admin_router
-from core.container import setup_dependency_injection
+from settings import settings  # Импортируем экземпляр settings
+from src.api.endpoints.forms import router as forms_router
 
-app = FastAPI()
-container = setup_dependency_injection()
-container.wire(modules=["modules.admin.router", "modules.tg_bot.router", "modules.admin.dependencies"])
+app = FastAPI(
+    title="Contact Form API",
+    description="API для обработки контактных форм с отправкой в Telegram",
+    version="1.0.0"
+)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(tg_bot_router, prefix="/api")
-app.include_router(admin_router, prefix="/admin")
+app.include_router(forms_router)
 
-
-@app.on_event("startup")
-async def startup_event():
-    await init_db()
+@app.get("/")
+async def root():
+    return {"message": "Contact Form API is running"}
 
 @app.get("/health")
 async def health_check():
-    return {"status": "ok"}
+    return {"status": "healthy"}
+
+@app.on_event("startup")
+async def startup_event():
+    logging.info("Starting up Contact Form API...")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    logging.info("Shutting down Contact Form API...")
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        host=settings.app_host,
+        port=settings.app_port,
+        reload=settings.app_debug
+    )
