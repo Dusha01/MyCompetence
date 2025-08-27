@@ -8,6 +8,3 @@ export { default as Purposes} from '$lib/comp/MainComp/purposes.svelte'
 export {default as Services} from '$lib/comp/MainComp/services.svelte'
 export { default as Footer} from '$lib/comp/MainComp/footer.svelte'
 export { default as ScrollToTop} from '$lib/comp/MainComp/ScrollToTop.svelte'
-
-export {default as BgAuth} from '$lib/comp/AuthComp/bg.svelte'
-export {default as SignInForm} from '$lib/comp/AuthComp/signInForm.svelte'
