@@ -19,7 +19,7 @@
         submitError = false;
         
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('https://dushafullstack.ru/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
