@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 import uvicorn
 
-from settings import settings  # Импортируем экземпляр settings
+from settings import settings
 from src.api.endpoints.forms import router as forms_router
 
 app = FastAPI(
