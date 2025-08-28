@@ -7,7 +7,7 @@ from src.utils.validators import validate_contact_form
 
 router = APIRouter(prefix="/api", tags=["contact"])
 
-@router.post("/contact", response_model=ContactResponse)
+@router.post("/contact")
 async def contact_form(
     form: ContactForm,
     telegram_service: TelegramService = Depends()
